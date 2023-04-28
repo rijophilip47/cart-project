@@ -1,0 +1,44 @@
+{% extends 'adminindex.html' %}
+{% block content %}
+<h1>Product form</h1>
+{% for i in data %}
+<form action="{% url 'editproduct' id=i.id %}" method="post" enctype="multipart/form-data">
+    <div class="card-body">
+      {% csrf_token %}
+      <div class="form-group">
+          <label for="exampleFormControlInput1">Name</label>
+          <input type="text" class="form-control" name="name2" id="exampleFormControlInput1" placeholder="Name" value="{{i.name}}">
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlInput2">Description</label>
+          <textarea class="form-control" name="description2" id="exampleFormControlInput2" rows="3" placeholder="Description">{{i.description}}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput2">Price</label>
+        <input type="text" class="form-control" name="price2" id="exampleFormControlInput3" placeholder="Price" value="{{i.price}}">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Category select</label>
+        <select class="form-control" name="category2" id="exampleFormControlSelect1">
+          {% for d in categ %}
+          {% if i.category == d.name %}
+            <option value="{{d.name}}" selected>{{d.name}}</option>
+          {% else %}
+            <option value="{{d.name}}">{{d.name}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlInput4">Image</label>
+          <input type="file" class="form-control" name="image2" id="exampleFormControlInput4" placeholder="image">
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'adminindex.html' %}
+{% block content %}
+<h1>Add Product</h1>
+<form action="{% url 'product' %}" method="post" enctype="multipart/form-data">
+    <div class="card-body">
+      {% csrf_token %}
+      <div class="form-group">
+          <label for="exampleFormControlInput1">Name</label>
+          <input type="text" class="form-control" name="name2" id="exampleFormControlInput1" placeholder="Name">
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlInput2">Description</label>
+          <textarea class="form-control" name="description2" id="exampleFormControlInput2" rows="3" placeholder="Description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput2">Price</label>
+        <input type="text" class="form-control" name="price2" id="exampleFormControlInput2" placeholder="Price">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Category select</label>
+        <select class="form-control" name="category2" id="exampleFormControlSelect1">
+          {% for i in data %}
+            <option value="{{i.name}}">{{i.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlInput4">Image</label>
+          <input type="file" class="form-control" name="image2" id="exampleFormControlInput4" placeholder="image">
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+{% endblock %}
